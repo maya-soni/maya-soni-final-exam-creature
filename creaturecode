@@ -1,0 +1,64 @@
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(0,0,139);
+ createfish(mouseX, mouseY);
+}
+
+//create fish body
+ // have an idea of what we are drawing
+//break that down into our basic shapes
+//position the shapes function 
+ push();
+//remeber the drawing canvas 
+  function createfish() { 
+fill ("lightblue")
+ellipse (190,250,130,80);
+  
+fill ("black")
+ellipse (220,240,10,10);
+  
+  fill("white")
+  rect (227,250,20,20);
+  
+  // Size and location for triangle fin
+
+  let centerX = width / 2;
+  let centerY = height / 2;
+  let size = 35;
+  fill("lightblue")
+  noStroke();
+
+  // Define the three vertices for fin
+  // Point 1 (Top point)
+  // Point 2 (Bottom Left point)
+  // Point 3 (Bottom Right point)
+  // Draw the triangle
+  triangle (
+    centerX, centerY - size,       
+    centerX - size, centerY + size,
+    centerX + size, centerY + size );
+  
+  fill("black")
+  circle(190, 240, 3);
+  circle(180, 240, 3);
+  circle(190, 250, 3);
+  circle(180, 250, 3);
+  circle(180, 260, 3); 
+  
+   //create fish tail
+ fill("lightblue")
+ triangle(60, 370,200, 190, 30, 330); 
+    
+ fill("lightblue")
+ rect (50,240,90,10); 
+  }
+
+class fish {
+  
+}
+
+
+
