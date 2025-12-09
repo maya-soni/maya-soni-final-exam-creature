@@ -66,13 +66,14 @@ class Fish {
     centerX - size, centerY + size,
     centerX + size, centerY + size );
   fill ("black")
-    ellipse (30,-10,10,10);//   
-    //fill("black")
-//   circle(190, 240, 3);
-//   circle(180, 240, 3);
-//   circle(190, 250, 3);
-//   circle(180, 250, 3);
-//   circle(180, 260, 3); 
+    ellipse (30,-10,10,10);
+    
+  fill("black")
+  circle(0, 0, 3);
+  circle(10, 0, 3);
+  circle(0, -10, 3);
+  circle(10, -10, 3);
+  circle(0, 10, 3); 
   
     // // body ellipse (190,250,130,80);
     fill("lightblue")
@@ -80,23 +81,20 @@ class Fish {
     push()
     translate(10,-60)
     rotate(radians(sin(map( frameCount % 60, 0, 59, 0, TWO_PI ))*9))
-    triangle(0,0,-140,180,-170,140)
+    triangle(0,20,-160,200,-190,140)
     pop()
 //    //create fish tail
 //  fill("lightblue")
 //  triangle(60, 370,200, 190, 30, 330); 
     
-//  fill("lightblue")
-//  rect (50,240,90,10); 
+fill("lightblue")
+ rect (-150,-10,90,10); 
     
     stroke("black")
     fill("white")
     rect (37,0,20,20);    
   }  
 }
-
-
-
 
 
 
