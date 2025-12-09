@@ -1,35 +1,60 @@
+let v1;
+let v2;
+let result;
+
 function setup() {
   createCanvas(400, 400);
+  v1 = createVector(10, 20);
+  v2 = createVector(5,10);
+  result = p5.Vector.add(v1, v2);
 }
 
 function draw() {
   background(0,0,139);
- createfish(mouseX, mouseY);
+  let fish = new Fish(mouseX, mouseY); 
+  fish.draw()   
 }
 
+
+
+class Fish {
+  constructor(x,y,w=400,h=400) {
+    this.position = createVector(x,y)
+    this.velocity = p5.Vector.random2D()
+    this.w = w
+    this.h = h
+     const ROTATE_DEGREES = 30
+    const frontRotationOffset = sin(map( frameCount % 31, 0, 30, 0, TWO_PI ))*ROTATE_DEGREES 
+  }
+  
 //create fish body
  // have an idea of what we are drawing
 //break that down into our basic shapes
 //position the shapes function 
- push();
 //remeber the drawing canvas 
-  function createfish() { 
-fill ("lightblue")
-ellipse (190,250,130,80);
-  
-fill ("black")
-ellipse (220,240,10,10);
-  
-  fill("white")
-  rect (227,250,20,20);
-  
-  // Size and location for triangle fin
+  draw() { 
+    noStroke()
+    push()
+    translate(this.position.x,this.position.y)
+    // rotate(this.rotation+PI/2)
+    // pop()    
 
-  let centerX = width / 2;
-  let centerY = height / 2;
+    fill ("lightblue")
+    // ellipse (190,250,130,80);
+    ellipse (0,0,130,80);
+  
+    fill ("black")
+    ellipse (30,-10,10,10);
+  
+
+  
+//   // Size and location for triangle fin
+
+  let centerX =0;
+  let centerY = -40;
   let size = 35;
   fill("lightblue")
-  noStroke();
+  // noStroke();
 
   // Define the three vertices for fin
   // Point 1 (Top point)
@@ -40,25 +65,38 @@ ellipse (220,240,10,10);
     centerX, centerY - size,       
     centerX - size, centerY + size,
     centerX + size, centerY + size );
+  fill ("black")
+    ellipse (30,-10,10,10);//   
+    //fill("black")
+//   circle(190, 240, 3);
+//   circle(180, 240, 3);
+//   circle(190, 250, 3);
+//   circle(180, 250, 3);
+//   circle(180, 260, 3); 
   
-  fill("black")
-  circle(190, 240, 3);
-  circle(180, 240, 3);
-  circle(190, 250, 3);
-  circle(180, 250, 3);
-  circle(180, 260, 3); 
-  
-   //create fish tail
- fill("lightblue")
- triangle(60, 370,200, 190, 30, 330); 
+    // // body ellipse (190,250,130,80);
+    fill("lightblue")
     
- fill("lightblue")
- rect (50,240,90,10); 
-  }
-
-class fish {
-  
+    push()
+    translate(10,-60)
+    rotate(radians(sin(map( frameCount % 60, 0, 59, 0, TWO_PI ))*9))
+    triangle(0,0,-140,180,-170,140)
+    pop()
+//    //create fish tail
+//  fill("lightblue")
+//  triangle(60, 370,200, 190, 30, 330); 
+    
+//  fill("lightblue")
+//  rect (50,240,90,10); 
+    
+    stroke("black")
+    fill("white")
+    rect (37,0,20,20);    
+  }  
 }
+
+
+
 
 
 
