@@ -1,39 +1,36 @@
 let v1;
 let v2;
 let result;
-let numberOfplankton = 50;
-
 
 //function with parameters to draw plankton
 //plankton changes color when fish interacts
-//function drawplankton (x,y,size) { 
- // fill ('green');
-  //circle (100,100,50); }
+
 
 function setup() {
   createCanvas(400, 400);
   v1 = createVector(10, 20);
   v2 = createVector(5,10);
   result = p5.Vector.add(v1, v2);
-  //call plankton fish interaction function
-  drawplankton (50,50,40) 
+   //call plankton fish interaction function
+  //drawplankton (50,50,40) 
 }
 
-//function with parameters to draw plankton
-//plankton changes color when fish interacts
-function drawplankton (x,y,size) { 
-  fill ('green');
-  circle (100,100,5); 
-}
 
 
 function draw() {
   background(0,0,139);
-  drawplankton()
+  //drawplankton();
+  //fish
   let fish = new Fish(mouseX, mouseY); 
-  fish.draw() 
-  
+  fish.draw()
+  //for plankton
+  let randomX = random(width);
+  let randomY = random(height);
+  fill ('green');
+  circle(randomX, randomY, 10);
 }
+
+
 
 class Fish {
   constructor(x,y,w=400,h=400) {
@@ -83,16 +80,18 @@ class Fish {
     centerX, centerY - size,       
     centerX - size, centerY + size,
     centerX + size, centerY + size );
-  fill ("black")
-    ellipse (30,-10,10,10);
     
+ //fish spots
   fill("black")
   circle(0, 0, 3);
   circle(10, 0, 3);
   circle(0, -10, 3);
   circle(10, -10, 3);
   circle(0, 10, 3); 
-  
+
+    //fish eye
+   fill ("black")
+  ellipse (30,-10,10,10);  
     // // body ellipse (190,250,130,80);
     fill("lightblue")
     
@@ -116,8 +115,11 @@ class Fish {
     rect (37,0,20,20);    
   }  
 }
-//function with parameters to draw plankton
-//plankton changes color when fish interacts
-//function drawplankton (x,y,size) { 
-//  fill ('green');
- // circle (100,100,50);
+
+
+  
+  
+
+
+
+
