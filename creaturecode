@@ -1,64 +1,3 @@
-let v1;
-let v2;
-let result;
-
-//function with parameters to draw plankton
-//plankton changes color when fish interacts
-
-
-function setup() {
-  createCanvas(400, 400);
-  v1 = createVector(10, 20);
-  v2 = createVector(5,10);
-  result = p5.Vector.add(v1, v2);
-   //call plankton fish interaction function
-  //drawplankton (50,50,40) 
-}
-
-
-
-function draw() {
-  background(0,0,139);
-  //drawplankton();
-  //fish
-  let fish = new Fish(mouseX, mouseY); 
-  fish.draw()
-  //for plankton
-  let randomX = random(width);
-  let randomY = random(height);
-  fill ('green');
-  circle(randomX, randomY, 10);
-}
-
-
-
-class Fish {
-  constructor(x,y,w=400,h=400) {
-    this.position = createVector(x,y)
-    this.velocity = p5.Vector.random2D()
-    this.w = w
-    this.h = h
-     const ROTATE_DEGREES = 30
-    const frontRotationOffset = sin(map( frameCount % 31, 0, 30, 0, TWO_PI ))*ROTATE_DEGREES 
-  }
-  
-//create fish body
- // have an idea of what we are drawing
-//break that down into our basic shapes
-//position the shapes function 
-//remeber the drawing canvas 
-  draw() { 
-    noStroke()
-    push()
-    translate(this.position.x,this.position.y)
-    // rotate(this.rotation+PI/2)
-    // pop()    
-
-    fill ("lightblue")
-    // ellipse (190,250,130,80);
-    ellipse (0,0,130,80);
-  
-    fill ("black")
     ellipse (30,-10,10,10);
   
 
@@ -119,7 +58,5 @@ class Fish {
 
   
   
-
-
 
 
