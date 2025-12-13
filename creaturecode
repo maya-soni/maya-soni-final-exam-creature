@@ -1,28 +1,27 @@
-//let v1;
-//let v2;
-////let result;
-//let x, y, radius;
-//let dx, dy;
+let v1;
+let v2;
+let result;
+let x, y, radius;
 let plankton = [] // list/array
-let initialNumberOfPlankton = 50
+let initialNumberOfPlankton = 15
 
-const SPEED = 3
-const plankton_SIZE_MIN = 3
-const plankton_SIZE_MAX = 5
+//const SPEED = 3
+//const plankton_SIZE_MIN = 3
+//const plankton_SIZE_MAX = 5
 
 function setup() {
   createCanvas(400, 400);
-  //v1 = createVector(10, 20);
-  //v2 = createVector(5,10);
- // result = p5.Vector.add(v1, v2);
+  v1 = createVector(10, 20);
+  v2 = createVector(5,10);
+ result = p5.Vector.add(v1, v2);
    //call plankton fish interaction function
   //drawplankton (50,50,40)
  // radius = 5;
-  //x = width/2;
-  //y = height/2;
+  x = width/2;
+  y = height/2;
   //slow down plankton by making the range smaller
-  //dx = random(-2,1);
- // dy= random (-2, 1);
+ // dx = random(-2,1);
+ //dy= random (-2, 1);
   ellipseMode(RADIUS)
  resetAllplankton()  
   
@@ -37,31 +36,38 @@ function draw() {
   fish.VelocityX = 2;
   fish.draw()  
   //plankton array
-  fill ('green')
+ fill ('green')
   for( let p of plankton ) { // for each loop (loop over every item)
     drawplankton(p)
-    // updateplankton(plankton)
+  // plankton(plankton)
     // keepInplankton(plankton)
-   }
-  
-  // for loop - loop a certain number of times
+   //let randomX = random(width);
+  //let randomY = random(height);
+ //if (x > width + radius) {
+   // x = -radius;
+ //}
+ // x += dx;
+ //y += dy;
+ }
+ 
+
+
+// for loop - loop a certain number of times
   // here I am using _nested_ loops
   //for( let i = 0; i < plankton.length - 1; i++ ) { 
-    //for( let j = i+1; j < plankton.length; j++ ) {
-     // bounceplankton(plankton[i], plankton[j])
-    //}
-  //}  
+  //for( let j = i+1; j < plankton.length; j++ )
+     //bounceplankton(plankton[i], plankton[j])
+ // }
+  //}
   
   //for plankton {
   //let randomX = random(width);
-  //let randomY = random(height);
- // if (x > width + radius) {
-    //x = -radius;
- // }
+ // let randomY = random(height);
+ //if (x > width + radius) {
+ //   x = -radius;
+// }
  // x += dx;
- // y += dy;
-  //fill ('green');
- //ellipse(x,y, radius * 2, radius * 2);
+ //y += dy;
 }
 
 // if the distance between the centers 
@@ -72,16 +78,17 @@ function planktonCollide(pA, pB) {
 
 function drawplankton(plankton) {
   fill("green")
-  circle(plankton.position.x, plankton.position.y,10)
+  ellipse(plankton.position.x, plankton.position.y,10)
 }
 
-function bounceplankton(planktonA, planktonB) {
-  if( planktonCollide(pA, pB) ) {
-    pA.velocity.x *= -1;
-   pA.velocity.y *= -1;
-    pB.velocity.x *= -1;
-   pB.velocity.y *= -1;
-  }
+//function bounceplankton(planktonA, planktonB) {
+//  if( planktonCollide(pA, pB) ) {
+  //  pA.velocity.x *= -1;
+  // pA.velocity.y *= -1;
+  // pB.velocity.x *= -1;
+  //// pB.velocity.y *= -1;
+ // }
+//}
   function keepInBounds(p) {
   if( p.position.x + p.radius > width ) {
     p.velocity.x *= -1; 
@@ -99,7 +106,7 @@ function bounceplankton(planktonA, planktonB) {
    p.velocity.y *= -1; 
   }
 }
-}
+
 //function resetAllplankton() {
  // plankton = [] // create an empty array
   //while loop - loops while a condition is true
@@ -115,13 +122,13 @@ function createplankton() {
     velocity: p5.Vector.random2D()
   }
 }
-//   fill ('green')
-// for( let p of plankton ) { // for each loop (loop over every item)
-//  drawplankton(plankton)
+// fill ('green')
+//for( let p of plankton ) { // for each loop (loop over every item)
+ //drawplankton(plankton)
 // updateplankton(plankton)
 // keepInplankton(plankton)
 //   resetAllplankton()  
-// }
+//}
   
   // // for loop - loop a certain number of times
   // // here I am using _nested_ loops
@@ -210,12 +217,19 @@ class Fish {
     
     stroke("black")
     fill("white")
-    rect (37,0,20,20);    
-  }  
+    rect (37,0,20,20);   
+    pop()  }  
 }
 function checkcollision(fish,) {
   
 }
+
+
+  
+  
+
+
+
 
 
   
