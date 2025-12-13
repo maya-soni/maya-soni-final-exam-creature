@@ -3,7 +3,7 @@ let v2;
 let result;
 let x, y, radius;
 let plankton = [] // list/array
-let initialNumberOfPlankton = 15
+let initialNumberOfPlankton = 7
 
 //const SPEED = 3
 //const plankton_SIZE_MIN = 3
@@ -30,24 +30,17 @@ function setup() {
 
 function draw() {
   background(0,0,139);
+  let planktonColor = color("#008000")
   //drawplankton();
   //fish
   let fish = new Fish(mouseX, mouseY);
   fish.VelocityX = 2;
   fish.draw()  
   //plankton array
- fill ('green')
+ //fill ('green')
+  fill(planktonColor);  
   for( let p of plankton ) { // for each loop (loop over every item)
     drawplankton(p)
-  // plankton(plankton)
-    // keepInplankton(plankton)
-   //let randomX = random(width);
-  //let randomY = random(height);
- //if (x > width + radius) {
-   // x = -radius;
- //}
- // x += dx;
- //y += dy;
  }
  
 
@@ -70,14 +63,15 @@ function draw() {
  //y += dy;
 }
 
-// if the distance between the centers 
+ //if the distance between the centers 
 //   is less than the sum of their radii
-function planktonCollide(pA, pB) {
-  return dist( planktonA.position.x, planktonA.position.y, planktonB.position.x, planktonB.position.y ) <= planktonA.radius + planktonB.radius
-}
+//function planktonCollide(pA, pB) {
+ // return dist( planktonA.position.x, planktonA.position.y, planktonB.position.x, //planktonB.position.y ) <= planktonA.radius + planktonB.radius
+//}
 
 function drawplankton(plankton) {
-  fill("green")
+  let planktonColor = color("#008000")  
+  fill(planktonColor)
   ellipse(plankton.position.x, plankton.position.y,10)
 }
 
@@ -122,21 +116,7 @@ function createplankton() {
     velocity: p5.Vector.random2D()
   }
 }
-// fill ('green')
-//for( let p of plankton ) { // for each loop (loop over every item)
- //drawplankton(plankton)
-// updateplankton(plankton)
-// keepInplankton(plankton)
-//   resetAllplankton()  
-//}
-  
-  // // for loop - loop a certain number of times
-  // // here I am using _nested_ loops
-  // for( let i = 0; i < plankton.length - 1; i++ ) { 
-  //   for( let j = i+1; j < plankton.length; j++ ) {
-  //     bounceplankton(plankton[i], plankton[j])
-  //   }
-  // }  
+
     
 
 function resetAllplankton() {
@@ -218,11 +198,14 @@ class Fish {
     stroke("black")
     fill("white")
     rect (37,0,20,20);   
-    pop()  }  
+    pop()  
+  }  
 }
-function checkcollision(fish,) {
+
+
   
-}
+  
+
 
 
   
