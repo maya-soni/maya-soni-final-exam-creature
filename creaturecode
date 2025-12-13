@@ -4,7 +4,6 @@ let result;
 let x, y, radius;
 let plankton = [] // list/array
 let initialNumberOfPlankton = 7
-
 //const SPEED = 3
 //const plankton_SIZE_MIN = 3
 //const plankton_SIZE_MAX = 5
@@ -30,7 +29,7 @@ function setup() {
 
 function draw() {
   background(0,0,139);
-  let planktonColor = color("#008000")
+  let fishColor = color("#ADD8E6")
   //drawplankton();
   //fish
   let fish = new Fish(mouseX, mouseY);
@@ -38,7 +37,7 @@ function draw() {
   fish.draw()  
   //plankton array
  //fill ('green')
-  fill(planktonColor);  
+  fill("green");  
   for( let p of plankton ) { // for each loop (loop over every item)
     drawplankton(p)
  }
@@ -70,8 +69,7 @@ function draw() {
 //}
 
 function drawplankton(plankton) {
-  let planktonColor = color("#008000")  
-  fill(planktonColor)
+  fill("green")
   ellipse(plankton.position.x, plankton.position.y,10)
 }
 
@@ -127,14 +125,15 @@ function resetAllplankton() {
   }
 }
 class Fish {
-  constructor(x,y,w=400,h=400) {
+   constructor(x,y,w=400,h=400) {
     this.position = createVector(x,y)
     this.velocity = p5.Vector.random2D()
     this.w = w
     this.h = h
      const ROTATE_DEGREES = 30
     const frontRotationOffset = sin(map( frameCount % 31, 0, 30, 0, TWO_PI ))*ROTATE_DEGREES
-      }
+    //let fishColor = color("#ADD8E6")
+    }
   
 //create fish body
  // have an idea of what we are drawing
@@ -145,12 +144,10 @@ class Fish {
     noStroke()
     push()
     translate(this.position.x,this.position.y)
-    // rotate(this.rotation+PI/2)
-    // pop()    
-
-    fill ("lightblue")
-    // ellipse (190,250,130,80);
-    ellipse (0,0,65,40);
+    // rotate(this.rotation+PI/2)    
+let fishColor = color("#ADD8E6")   
+fill (fishColor)
+  ellipse (0,0,65,40);
   
 
   
@@ -159,7 +156,7 @@ class Fish {
   let centerX =0;
   let centerY = -40;
   let size = 35;
-  fill("lightblue")
+  fill(fishColor)
   // noStroke();
 
   // Define the three vertices for fin
@@ -184,14 +181,14 @@ class Fish {
    fill ("black")
   ellipse (35,-15,5,5);  
     // // body ellipse (190,250,130,80);
-    fill("lightblue")
+    fill(fishColor)
     
     push()
     translate(10,-60)
     rotate(radians(sin(map( frameCount % 60, 0, 59, 0, TWO_PI ))*9))
     triangle(0,20,-160,200,-190,140)
     // side fin
-    fill("lightblue")
+    fill(fishColor)
     rect (-110,30,90,10); 
     pop() 
     
@@ -201,6 +198,13 @@ class Fish {
     pop()  
   }  
 }
+
+
+  
+  
+
+
+
 
 
   
