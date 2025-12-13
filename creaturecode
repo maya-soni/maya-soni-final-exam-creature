@@ -97,7 +97,8 @@ function drawplankton(plankton) {
   if( p.position.y - p.radius < 0 ) {
    p.velocity.y *= -1; 
   }
-}
+  }
+  
 
 //function resetAllplankton() {
  // plankton = [] // create an empty array
@@ -203,12 +204,6 @@ fill (fishColor)
   
   
 
-
-
-
-
-  
-  
 
 
 
