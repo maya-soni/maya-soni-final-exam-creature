@@ -3,22 +3,26 @@
 let result;
 let x, y, radius;
 let plankton = [] // list/array
+const PLANKTON_R = 10
 let initialNumberOfPlankton = 4
 let position;
 let velocity;
 let acceleration;
+let fish;
 //const SPEED = 3
 //const plankton_SIZE_MIN = 3
 //const plankton_SIZE_MAX = 5
 
 function setup() {
   createCanvas(400, 400);
+  fish = new Fish(width/2,height/2)
   position = createVector(width / 2, height / 2); // Start at the center
   velocity = createVector(0, 0); 
   acceleration = createVector(1, 0); 
   //v2 = createVector(5,10);
  //result = p5.Vector.add(v1, v2);
-   //call plankton fish interaction function
+  
+  //call plankton fish interaction function
   //drawplankton (50,50,40)
  // radius = 5;
  x = width/2;
@@ -28,15 +32,16 @@ function setup() {
  //dy= random (-2, 1);
   ellipseMode(RADIUS)
  resetAllplankton()  
+  // noLoop()
   
 }
 
 function draw() {
   background(0,0,139);
-  let fishColor = color("#ADD8E6")
+
   //drawplankton();
   //fish
-  let fish = new Fish(mouseX, mouseY);
+  fish.position = createVector(mouseX,mouseY)
   fish.draw()  
   //plankton array
    velocity.add(acceleration);
@@ -44,32 +49,20 @@ function draw() {
   fill("green");  
   for( let p of plankton ) { // for each loop (loop over every item)
     drawplankton(p)
+    if( checkCollisions(fish,p) ) {
+      fish.atePlankton()
+    }
  }
 }
  
- 
-  //for plankton {
-  //let randomX = random(width);
- //let randomY = random(height);
- //if (x > width + radius) {
-  //  x = -radius;
-//}
- // x += dx;
- //y += dy;
 
-
- //if the distance between the centers 
-//   is less than the sum of their radii
-//function planktonCollide(pA, pB) {
- // return dist( planktonA.position.x, planktonA.position.y, planktonB.position.x, //planktonB.position.y ) <= planktonA.radius + planktonB.radius
-//}
 
 function drawplankton(plankton) {
   fill("green")
-   fill('green')
   let tdelta = 2;
   let acc = 0.1;
-  ellipse(plankton.position.x, plankton.position.y, 10)
+  //using velocity and acceleration for plankton
+  ellipse(plankton.position.x, plankton.position.y, PLANKTON_R)
   plankton.position.y += (tdelta*plankton.velocity.y + tdelta*tdelta*acc*plankton.direction.y/2)*plankton.direction.y;
   plankton.velocity.y += tdelta*acc*plankton.direction.y;
 
@@ -86,39 +79,26 @@ function drawplankton(plankton) {
 
 }
 
-//function bounceplankton(planktonA, planktonB) {
-//if( planktonCollide(pA, pB) ) {
-// pA.velocity.x *= -1;
-// pA.velocity.y *= -1;
-// pB.velocity.x *= -1;
-//pB.velocity.y *= -1;
+
+//function keepInBounds (p) {
+//  if (p.position.x + p.radius > width) {
+  //  p.velocity.x *= -1
+  //}
+
+  //if (p.position.y + p.radius > height) {
+   // p.velocity.y *= -1
+ // }
+
+ // if (p.position.x - p.radius < 0) {
+  //  p.velocity.x *= -1
+ // }
+
+  //if (p.position.y - p.radius < 0) {
+   // p.velocity.y *= -1
+  //}
 //}
-//}
-function keepInBounds (p) {
-  if (p.position.x + p.radius > width) {
-    p.velocity.x *= -1
-  }
 
-  if (p.position.y + p.radius > height) {
-    p.velocity.y *= -1
-  }
 
-  if (p.position.x - p.radius < 0) {
-    p.velocity.x *= -1
-  }
-
-  if (p.position.y - p.radius < 0) {
-    p.velocity.y *= -1
-  }
-}
-
-//function resetAllplankton() {
-// plankton = [] // create an empty array
-//while loop - loops while a condition is true
-//while( plankton.length < initialNumberOfPlankton ) {
-//  createplankton()
-//  }
-//}
 
 // Create a plankton
 function createplankton () {
@@ -133,11 +113,10 @@ function createplankton () {
 }
 
 function resetAllplankton () {
-  plankton = [] // create an empty array
-  //while loop - loops while a condition is true
-  while (plankton.length < initialNumberOfPlankton) {
-    plankton.push(createplankton())
-  }
+  //plankton = [] // create an empty array
+ while (plankton.length < initialNumberOfPlankton) {
+ plankton.push(createplankton())
+ }
 }
 
 class Fish {
@@ -146,10 +125,17 @@ class Fish {
     this.velocity = p5.Vector.random2D()
     this.w = w
     this.h = h
+    this.r = 65
     const ROTATE_DEGREES = 30
     const frontRotationOffset =
       sin(map(frameCount % 31, 0, 30, 0, TWO_PI)) * ROTATE_DEGREES
-    //let fishColor = color("#ADD8E6")
+    this.fishColor = color("#ADD8E6");
+    this.colorTimer = 0;
+  }
+  
+  atePlankton() {
+    this.fishColor = color("#FF0000")
+    this.colorTimer = 45;
   }
 
   //create fish body
@@ -162,8 +148,7 @@ class Fish {
     push()
     translate(this.position.x, this.position.y)
     // rotate(this.rotation+PI/2)
-    let fishColor = color('#ADD8E6')
-    fill(fishColor)
+    fill(this.fishColor)
     ellipse(0, 0, 65, 40)
 
     // Size and location for triangle fin
@@ -171,7 +156,7 @@ class Fish {
     let centerX = 0
     let centerY = -40
     let size = 35
-    fill(fishColor)
+    fill(this.fishColor)
     // noStroke();
 
     // Define the three vertices for fin
@@ -199,15 +184,15 @@ class Fish {
     //fish eye
     fill('black')
     ellipse(35, -15, 5, 5)
-    // // body ellipse (190,250,130,80);
-    fill(fishColor)
+    // // body ellipse;
+    fill(this.fishColor)
 
     push()
     translate(10, -60)
     rotate(radians(sin(map(frameCount % 60, 0, 59, 0, TWO_PI)) * 9))
     triangle(0, 20, -160, 200, -190, 140)
     // side fin
-    fill(fishColor)
+    fill(this.fishColor)
     rect(-110, 30, 90, 10)
     pop()
 
@@ -215,24 +200,16 @@ class Fish {
     fill('white')
     rect(37, 0, 20, 20)
     pop()
+    // circle(this.position.x, this.position.y,this.w)
+    this.colorTimer--
+    // lerp color, map(colorTimer, 0, 45,  0, 1) color("#ADD8E6"), color("#FF00000"))
+    if( this.colorTimer <= 0 ) {
+      this.fishColor = color("#ADD8E6");
+    }
   }
 }
-
-
-  
-  
-
-
-
-
-  
-  
-
-
-
-
-
-  
-  
-
-
+function checkCollisions(fish, plankton) {
+  // console.log( fish, plankton )
+  let d = dist (fish.position.x, fish.position.y, plankton.position.x, plankton.position.y);
+  return d < fish.r + PLANKTON_R
+}
