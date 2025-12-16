@@ -146,7 +146,10 @@ class Fish {
   //position the shapes function
   //remeber the drawing canvas
   draw () {
-    noStroke()
+    noStroke();
+    //map 45 to 0 timer to a 1 to 0 range so the fish fades to red
+    let lerpAmt = map(this.colorTimer, 0, 45, 0, 1);
+    this.fishColor = lerpColor (color("#ADD8E6"), color("#FF0000"), lerpAmt);
     push()
     translate(this.position.x, this.position.y)
     // rotate(this.rotation+PI/2)
