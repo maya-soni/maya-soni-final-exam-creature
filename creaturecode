@@ -44,17 +44,19 @@ function draw() {
   fish.position = createVector(mouseX,mouseY)
   fish.draw()  
   //plankton array
-   velocity.add(acceleration);
-  position.add(velocity);
-  fill("green");  
-  for( let p of plankton ) { // for each loop (loop over every item)
-    drawplankton(p)
-    if( checkCollisions(fish,p) ) {
-      fish.atePlankton()
+   //velocity.add(acceleration);
+  //position.add(velocity);
+  //fill("green");  
+  for( let i = plankton.length - 1; i >= 0; i-- ) { // for each loop (loop over every item
+    let p = plankton [i]; {
+    drawplankton(p);
+    if( checkCollisions(fish,p)) {
+      fish.atePlankton();
+      plankton.splice (i, 1);
     }
  }
 }
- 
+} 
 
 
 function drawplankton(plankton) {
@@ -202,7 +204,7 @@ class Fish {
     pop()
     // circle(this.position.x, this.position.y,this.w)
     this.colorTimer--
-    // lerp color, map(colorTimer, 0, 45,  0, 1) color("#ADD8E6"), color("#FF00000"))
+   // lerp, color, map(colorTimer, 0, 45,  0, 1) color("#ADD8E6"), color("#FF00000"))
     if( this.colorTimer <= 0 ) {
       this.fishColor = color("#ADD8E6");
     }
