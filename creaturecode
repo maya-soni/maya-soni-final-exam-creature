@@ -1,3 +1,4 @@
+
 let x, y, radius;
 let plankton = [] // list/array
 const PLANKTON_R = 10
@@ -17,9 +18,6 @@ function setup() {
   //call plankton fish interaction function
  x = width/2;
   y = height/2;
-  //slow down plankton by making the range smaller
- // dx = random(-2,1);
- //dy= random (-2, 1);
   ellipseMode(RADIUS)
  resetAllplankton()  
   // noLoop()
@@ -28,15 +26,10 @@ function setup() {
 
 function draw() {
   background(0,0,139);
-
-  //drawplankton();
   //fish
   fish.position = createVector(mouseX,mouseY)
   fish.draw()  
-  //plankton array
-   //velocity.add(acceleration);
-  //position.add(velocity);
-  //fill("green");  
+  //plankton array 
   for( let i = plankton.length - 1; i >= 0; i-- ) { // for each loop (loop over every item
     let p = plankton [i]; {
     drawplankton(p);
@@ -70,25 +63,6 @@ function drawplankton(plankton) {
   }
 
 }
-
-
-//function keepInBounds (p) {
-//  if (p.position.x + p.radius > width) {
-  //  p.velocity.x *= -1
-  //}
-
-  //if (p.position.y + p.radius > height) {
-   // p.velocity.y *= -1
- // }
-
- // if (p.position.x - p.radius < 0) {
-  //  p.velocity.x *= -1
- // }
-
-  //if (p.position.y - p.radius < 0) {
-   // p.velocity.y *= -1
-  //}
-//}
 
 
 
@@ -200,7 +174,6 @@ class Fish {
     pop()
     // circle(this.position.x, this.position.y,this.w)
     this.colorTimer--
-   // lerp, color, map(colorTimer, 0, 45,  0, 1) color("#ADD8E6"), color("#FF00000"))
     if( this.colorTimer <= 0 ) {
       this.fishColor = color("#ADD8E6");
     }
