@@ -2,7 +2,7 @@
 let x, y, radius;
 let plankton = [] // list/array
 const PLANKTON_R = 10
-let initialNumberOfPlankton = 4
+let initialNumberOfPlankton = 5
 let position;
 let velocity;
 let acceleration;
@@ -11,7 +11,7 @@ let fish;
 function setup() {
   createCanvas(400, 400);
   fish = new Fish(width/2,height/2)
-  position = createVector(width / 2, height / 2); // Start at the center
+  position = createVector(width / 2, height / 2);
   velocity = createVector(0, 0); 
   acceleration = createVector(1, 0); 
   
@@ -56,7 +56,6 @@ function drawplankton(plankton) {
 
   if(plankton.position.y>=400 || plankton.position.y<=0){
     plankton.direction.y *= -1
-    // plankton.velocity.y = 0
   }
   if (plankton.position.x>=400|| plankton.position.x <= 0){
     plankton.direction.x *= -1
@@ -101,7 +100,7 @@ class Fish {
   }
   
   atePlankton() {
-    this.fishColor = color("#FF0000")
+    this.fishColor = color("#FF0000");
     this.colorTimer = 45;
     this.permanentRed = constrain (this.permanentRed + 0.2, 0, 1);
   }
@@ -110,7 +109,7 @@ class Fish {
   // have an idea of what we are drawing
   //break that down into our basic shapes
   //position the shapes function
-  //remeber the drawing canvas
+  //remember the drawing canvas
   draw () {
     noStroke();
     //map 45 to 0 timer to a 1 to 0 range so the fish fades to red
