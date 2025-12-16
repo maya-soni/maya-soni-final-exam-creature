@@ -133,11 +133,13 @@ class Fish {
       sin(map(frameCount % 31, 0, 30, 0, TWO_PI)) * ROTATE_DEGREES
     this.fishColor = color("#ADD8E6");
     this.colorTimer = 0;
+    this.permanentRed = 0;
   }
   
   atePlankton() {
     this.fishColor = color("#FF0000")
     this.colorTimer = 45;
+    this.permanentRed = constrain (this.permanentRed + 0.2, 0, 1);
   }
 
   //create fish body
@@ -148,8 +150,9 @@ class Fish {
   draw () {
     noStroke();
     //map 45 to 0 timer to a 1 to 0 range so the fish fades to red
-    let lerpAmt = map(this.colorTimer, 0, 45, 0, 1);
-    this.fishColor = lerpColor (color("#ADD8E6"), color("#FF0000"), lerpAmt);
+    let lerpAmt = map(this.colorTimer, 0, 45, 0, 1, true);
+    let totalRedness = constrain (lerpAmt + this.permanentRed, 0,1);
+    this.fishColor = lerpColor (color("#ADD8E6"), color("#FF0000"), totalRedness);
     push()
     translate(this.position.x, this.position.y)
     // rotate(this.rotation+PI/2)
