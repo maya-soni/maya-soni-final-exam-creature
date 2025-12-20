@@ -155,7 +155,7 @@ class Fish {
     //fish eye
     fill('black')
     ellipse(35, -15, 5, 5)
-    // // body ellipse;
+    // body ellipse;
     fill(this.fishColor)
 
     push()
